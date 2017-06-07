@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface FoodsModel : NSObject
-@property(copy, nonatomic)NSString * shopTitle;
-@property(copy, nonatomic)NSString * startCount;
-@property(copy, nonatomic)NSString * sellCount;
-@property(copy, nonatomic)NSString * address;
-@property(copy, nonatomic)NSString * sort;
-@property(copy, nonatomic)NSString * imgUrl;
+@property(copy, nonatomic)NSString * URL;
+@property(copy, nonatomic)NSString * addConcrete;
+@property(copy, nonatomic)NSString * distance;
+@property(copy, nonatomic)NSString * phone;
+@property(copy, nonatomic)NSString * saleValume;
+@property(copy, nonatomic)NSString * score;
+@property(copy, nonatomic)NSString * stoID;
+@property(copy, nonatomic)NSString * stoName;
+@property(copy, nonatomic)NSString * styleId;
 @end

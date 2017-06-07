@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FoodsModel.h"
+#import "RecommendModel.h"
 @interface MerchantsTableViewCell : UITableViewCell
 @property(strong, nonatomic)NSArray * merchantsArr;
 - (void)addItemTarget:(id)target action:(SEL)action;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ADModel.h"
-#import "FoodsModel.h"
+#import "RecommendModel.h"
 #import "Screen.h"
 @interface IndexViewModel : NSObject
 /** 首页内容数据模型 */
@@ -18,12 +18,15 @@
 /** 初始化方法 */
 - (instancetype)initWithADModel:(ADModel *)adModel;
 
-/** 首页内容数据模型 */
-@property (nonatomic, strong) FoodsModel *foodsModel;
+
 
 #pragma mark - init
 /** 初始化方法 */
-- (instancetype)initWithFoodsModel:(FoodsModel *)foodsModel;
+- (instancetype)initWithRecommendModel:(RecommendModel *)recommendModel;
+
+/** 首页内容数据模型 */
+@property (nonatomic, strong) RecommendModel *recommendModel;
+
 
 
 
@@ -33,4 +36,5 @@
 
 /** 从网络中加载启动页数据 */
 - (void)loadDataArrFromNetwork;
+
 @end

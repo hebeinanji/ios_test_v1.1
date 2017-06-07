@@ -8,6 +8,7 @@
 
 #import "MerchantsTableViewCell.h"
 #import "Screen.h"
+#import "UIImageView+AFNetworking.h"
 @interface MerchantsTableViewCell()
 
 /**
@@ -60,19 +61,19 @@
     rightLine.backgroundColor = [UIColor blackColor];
     
     self.merchantsOneImageView = [[UIImageView alloc] init];
-    self.merchantsOneImageView.backgroundColor = [UIColor redColor];
+//    self.merchantsOneImageView.backgroundColor = [UIColor redColor];
     self.merchantsOneName = [[UILabel alloc] init];
     self.merchantsOneName.textAlignment = NSTextAlignmentCenter;
     self.merchantsOneName.text = @"金百万";
     
     self.merchantsTwoImageView = [[UIImageView alloc] init];
-    self.merchantsTwoImageView.backgroundColor = [UIColor redColor];
+//    self.merchantsTwoImageView.backgroundColor = [UIColor redColor];
     self.merchantsTwoName = [[UILabel alloc] init];
     self.merchantsTwoName.textAlignment = NSTextAlignmentCenter;
     self.merchantsTwoName.text = @"柚恋柠檬";
     
     self.merchantsThreeImageView = [[UIImageView alloc] init];
-    self.merchantsThreeImageView.backgroundColor = [UIColor redColor];
+//    self.merchantsThreeImageView.backgroundColor = [UIColor redColor];
     self.merchantsThreeName = [[UILabel alloc] init];
     self.merchantsThreeName.textAlignment = NSTextAlignmentCenter;
     self.merchantsThreeName.text = @"张阿姨奶茶";
@@ -161,13 +162,15 @@
 -(void)setMerchantsArr:(NSArray *)merchantsArr{
     
 //    self.merchantsOneImageView
-    self.merchantsOneName.text = [merchantsArr[0] shopTitle];
+    [self.merchantsOneImageView setImageWithURL:[NSURL URLWithString:[merchantsArr[0] picURL]]  placeholderImage:nil];
+    self.merchantsOneName.text = [merchantsArr[0] storeName];
     
     //    self.merchantsTwoImageView
-    self.merchantsTwoName.text = [merchantsArr[1] shopTitle];
+    [self.merchantsTwoImageView setImageWithURL:[NSURL URLWithString:[merchantsArr[1] picURL]]  placeholderImage:nil];
     
     //    self.merchantsThreeImageView
-    self.merchantsThreeName.text = [merchantsArr[2] shopTitle];
+    [self.merchantsThreeImageView setImageWithURL:[NSURL URLWithString:[merchantsArr[2] picURL]]  placeholderImage:nil];
+    self.merchantsThreeName.text = [merchantsArr[2] storeName];
     
     
 }

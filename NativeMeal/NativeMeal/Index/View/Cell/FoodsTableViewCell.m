@@ -8,6 +8,7 @@
 
 #import "FoodsTableViewCell.h"
 #import "Screen.h"
+#import "UIImageView+AFNetworking.h"
 @interface FoodsTableViewCell()
 @property(nonatomic, strong) UIImageView * merchantImageView;
 @property(nonatomic, strong) UILabel * merchantName;
@@ -125,11 +126,12 @@
 }
 
 -(void)setModel:(FoodsModel *)model{
-    self.merchantName.text = model.shopTitle;
-    self.salesNum.text = [NSString stringWithFormat:@"月售 %@",model.sellCount];
-    self.catagory.text = model.sort;
-    self.location.text = model.address;
-    self.foregroundStarView.frame = CGRectMake(11*INDEX, 4*INDEX, 1.1*INDEX*[model.startCount floatValue], 1.1*INDEX);
+    [self.merchantImageView setImageWithURL:[NSURL URLWithString:model.URL] placeholderImage:nil];
+    self.merchantName.text = model.stoName;
+    self.salesNum.text = [NSString stringWithFormat:@"月售 %@",model.saleValume];
+    self.catagory.text = @"";
+    self.location.text = model.addConcrete;
+    self.foregroundStarView.frame = CGRectMake(11*INDEX, 4*INDEX, 1.1*INDEX*[model.score floatValue], 1.1*INDEX);
     self.news.text = @"单人餐99元，4人餐148元，6人餐228元";
 }
 @end

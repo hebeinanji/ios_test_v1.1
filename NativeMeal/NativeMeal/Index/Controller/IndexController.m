@@ -14,6 +14,7 @@
 #import "FoodsTableViewCell.h"
 #import "FoodsHeaderView.h"
 #import "IndexViewModel.h"
+#import "FoodsViewModel.h"
 #import "NavView.h"
 #import "Screen.h"
 #import <MapKit/MapKit.h>
@@ -32,6 +33,7 @@ static NSString *identer_nomal = @"identer_nomal";
 @property(strong, nonatomic)NSMutableArray * merchantsDataSource;
 @property(strong, nonatomic)NavView * navView;
 @property(strong, nonatomic)IndexViewModel * indexVM;
+@property(strong, nonatomic)FoodsViewModel * foodsVM;
 @property(strong,nonatomic)CLLocationManager* locationManager;
 @property(copy, nonatomic)NSString * currentCity;
 @end
@@ -51,6 +53,12 @@ static NSString *identer_nomal = @"identer_nomal";
         _indexVM = [[IndexViewModel alloc] init];
     }
     return _indexVM;
+}
+-(FoodsViewModel *)foodsVM{
+    if(!_foodsVM){
+        _foodsVM = [[FoodsViewModel alloc] init];
+    }
+    return _foodsVM;
 }
 -(NSMutableArray *)foodsDataSource{
     if (!_foodsDataSource) {
@@ -111,200 +119,80 @@ static NSString *identer_nomal = @"identer_nomal";
 }
 - (void)loadData{
     [self.indexVM loadDataArrFromNetwork];
+    
+//    [self.indexVM loadDataArrFromNetworkWithPage:pageNum];
     self.tableView.userInteractionEnabled = NO;
     // 创建数据信号
     RACSignal *indexSignal = [self.indexVM.requestCommand execute:nil];
+    
     @weakify(self);
     [[RACSignal combineLatest:@[indexSignal]] subscribeNext:^(RACTuple *x) {
         @strongify(self);
         
         RACTupleUnpack(NSArray *indexArr) = x;
-        
+//        NSLog(@"%@",indexArr);
         // indexArr 里包括所有数据的model
-        
-        // 假数据
-        
-        // 广告
-        ADModel * ad1 = [[ADModel alloc] init];
-        ad1.url = @"1";
-        ADModel * ad2 = [[ADModel alloc] init];
-        ad2.url = @"1";
-        ADModel * ad3 = [[ADModel alloc] init];
-        ad3.url = @"1";
-        NSArray * adArr = @[ad1,ad2,ad3];
-        self.adDataSource = [adArr mutableCopy];
+        self.adDataSource = [indexArr[0] mutableCopy];
+        self.recommendDataSource = [indexArr[1] mutableCopy];
+        self.merchantsDataSource = [indexArr[2] mutableCopy];
         pics = [NSMutableArray array];
-        for (int i = 0; i < self.adDataSource.count; i++) {
-            [pics addObject:[self.adDataSource[i] url]];
+        for (int i = 0; i < [indexArr[0] count]; i++) {
+            [pics addObject:[indexArr[0][i] picURL]];
         }
-        // 爆款推荐
-        FoodsModel * f1 = [[FoodsModel alloc] init];
-        f1.shopTitle = @"骨法黄焖鸡";
-        f1.startCount = @"3.5";
-        f1.sellCount = @"220";
-        f1.address = @"农业大学西校区 1200m";
-        f1.sort = @"鸭";
-        f1.imgUrl = @"";
         
-        FoodsModel * f2 = [[FoodsModel alloc] init];
-        f2.shopTitle = @"老王推荐";
-        f2.startCount = @"3.5";
-        f2.sellCount = @"220";
-        f2.address = @"农业大学西校区 1200m";
-        f2.sort = @"鸭";
-        f2.imgUrl = @"";
-        
-        FoodsModel * f3 = [[FoodsModel alloc] init];
-        f3.shopTitle = @"东方饺子馆";
-        f3.startCount = @"3.5";
-        f3.sellCount = @"220";
-        f3.address = @"农业大学西校区 1200m";
-        f3.sort = @"鸭";
-        f3.imgUrl = @"";
-        
-        FoodsModel * f4 = [[FoodsModel alloc] init];
-        f4.shopTitle = @"田老师红烧肉";
-        f4.startCount = @"3.5";
-        f4.sellCount = @"220";
-        f4.address = @"农业大学西校区 1200m";
-        f4.sort = @"鸭";
-        f4.imgUrl = @"";
-        
-        FoodsModel * f5 = [[FoodsModel alloc] init];
-        f5.shopTitle = @"张姐烤肉拌饭";
-        f5.startCount = @"3.5";
-        f5.sellCount = @"220";
-        f5.address = @"农业大学西校区 1200m";
-        f5.sort = @"鸭";
-        f5.imgUrl = @"";
-        NSArray * recommendArr = @[f1,f2,f3,f4,f5];
-        self.recommendDataSource = [recommendArr mutableCopy];
-        
-        // 品牌商家
-        FoodsModel * f11 = [[FoodsModel alloc] init];
-        f11.shopTitle = @"金百万";
-        f11.startCount = @"3.5";
-        f11.sellCount = @"220";
-        f11.address = @"农业大学西校区 1200m";
-        f11.sort = @"鸭";
-        f11.imgUrl = @"";
-        
-        FoodsModel * f12 = [[FoodsModel alloc] init];
-        f12.shopTitle = @"柚恋柠檬";
-        f12.startCount = @"3.5";
-        f12.sellCount = @"220";
-        f12.address = @"农业大学西校区 1200m";
-        f12.sort = @"鸭";
-        f12.imgUrl = @"";
-        
-        FoodsModel * f13 = [[FoodsModel alloc] init];
-        f13.shopTitle = @"张阿姨奶茶";
-        f13.startCount = @"3.5";
-        f13.sellCount = @"220";
-        f13.address = @"农业大学西校区 1200m";
-        f13.sort = @"鸭";
-        f13.imgUrl = @"";
-        NSArray * merchantsArr = @[f11,f12,f13];
-        self.merchantsDataSource = [merchantsArr mutableCopy];
-        
-        // 商家
-        FoodsModel * f20 = [[FoodsModel alloc] init];
-        f20.shopTitle = @"一品鲜牛（牛扒.鸡扒）";
-        f20.startCount = @"3.5";
-        f20.sellCount = @"1220";
-        f20.address = @"农业大学西校区 1200m";
-        f20.sort = @"肉";
-        f20.imgUrl = @"";
-        
-        FoodsModel * f21 = [[FoodsModel alloc] init];
-        f21.shopTitle = @"第一佳大鸡排";
-        f21.startCount = @"4.5";
-        f21.sellCount = @"120";
-        f21.address = @"农业大学西校区 100m";
-        f21.sort = @"米饭";
-        f21.imgUrl = @"";
-        
-        FoodsModel * f22 = [[FoodsModel alloc] init];
-        f22.shopTitle = @"填鸭梨烤鸭店";
-        f22.startCount = @"3.5";
-        f22.sellCount = @"220";
-        f22.address = @"农业大学西校区 1200m";
-        f22.sort = @"鸭";
-        f22.imgUrl = @"";
-        
-        FoodsModel * f23 = [[FoodsModel alloc] init];
-        f23.shopTitle = @"西安分会";
-        f23.startCount = @"3.7";
-        f23.sellCount = @"120";
-        f23.address = @"主校区 100m";
-        f23.sort = @"米饭";
-        f23.imgUrl = @"";
-        
-        FoodsModel * f24 = [[FoodsModel alloc] init];
-        f24.shopTitle = @"吉野家（上地三街店）";
-        f24.startCount = @"3.5";
-        f24.sellCount = @"2220";
-        f24.address = @"上地三街 1200m";
-        f24.sort = @"快餐";
-        f24.imgUrl = @"";
-        
-        FoodsModel * f25 = [[FoodsModel alloc] init];
-        f25.shopTitle = @"山西面食馆（三街店）";
-        f25.startCount = @"4.5";
-        f25.sellCount = @"20";
-        f25.address = @"上地三街 1200m";
-        f25.sort = @"面食";
-        f25.imgUrl = @"";
-        
-        FoodsModel * f26 = [[FoodsModel alloc] init];
-        f26.shopTitle = @"水煮鱼（西二旗店）";
-        f26.startCount = @"3.9";
-        f26.sellCount = @"220";
-        f26.address = @"西二旗街 1200m";
-        f26.sort = @"鱼";
-        f26.imgUrl = @"";
-        
-        FoodsModel * f27 = [[FoodsModel alloc] init];
-        f27.shopTitle = @"来自星星的韩式炸鸡";
-        f27.startCount = @"5";
-        f27.sellCount = @"1220";
-        f27.address = @"上地 1200m";
-        f27.sort = @"快餐";
-        f27.imgUrl = @"";
-        
-        FoodsModel * f28 = [[FoodsModel alloc] init];
-        f28.shopTitle = @"一茶一坐（北京店）";
-        f28.startCount = @"3";
-        f28.sellCount = @"150";
-        f28.address = @"北京那个 1200m";
-        f28.sort = @"茶";
-        f28.imgUrl = @"";
-        
-        FoodsModel * f29 = [[FoodsModel alloc] init];
-        f29.shopTitle = @"这个不规范";
-        f29.startCount = @"5";
-        f29.sellCount = @"1220";
-        f29.address = @"上地 1200m";
-        f29.sort = @"快餐";
-        f29.imgUrl = @"";
-        
-        NSArray * foodsArr = @[f20,f21,f22,f23,f24,f25,f26,f27,f28,f29];
-        self.foodsDataSource = [foodsArr mutableCopy];
-        
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
-        self.tableView.userInteractionEnabled = YES;
         
     } error:^(NSError *error) {
         NSLog(@"%@",error.localizedDescription);
         [self.tableView.mj_header endRefreshing];
         self.tableView.userInteractionEnabled = YES;
+    } completed:^{
+        [self.foodsVM loadDataArrFromNetworkWithPage:pageNum];
+        RACSignal *foodsSignal = [self.foodsVM.requestCommand execute:nil];
+        [[RACSignal combineLatest:@[foodsSignal]] subscribeNext:^(RACTuple *x) {
+            @strongify(self);
+            
+            RACTupleUnpack(NSArray *foodArr) = x;
+//            NSLog(@"%@",foodArr);
+            self.foodsDataSource = [foodArr mutableCopy];
+            // indexArr 里包括所有数据的model
+            [self.tableView reloadData];
+            [self.tableView.mj_header endRefreshing];
+            self.tableView.userInteractionEnabled = YES;
+            
+        } error:^(NSError *error) {
+            NSLog(@"%@",error.localizedDescription);
+            [self.tableView.mj_header endRefreshing];
+            self.tableView.userInteractionEnabled = YES;
+        }];
     }];
+    
     
 }
 - (void)loadNextPage{
-    [self.tableView.mj_footer endRefreshing];
-    self.tableView.userInteractionEnabled = YES;
+    [self.foodsVM loadDataArrFromNetworkWithPage:pageNum];
+    RACSignal *foodsSignal = [self.foodsVM.requestCommand execute:nil];
+    @weakify(self);
+    [[RACSignal combineLatest:@[foodsSignal]] subscribeNext:^(RACTuple *x) {
+        @strongify(self);
+        
+        RACTupleUnpack(NSArray *foodArr) = x;
+//        NSLog(@"%@",foodArr);
+        for (int i = 0; i< foodArr.count; i++) {
+            [self.foodsDataSource addObject:foodArr[i]];
+        }
+        // indexArr 里包括所有数据的model
+        
+        [self.tableView reloadData];
+        [self.tableView.mj_footer endRefreshing];
+        self.tableView.userInteractionEnabled = YES;
+        
+    } error:^(NSError *error) {
+        pageNum--;
+        NSLog(@"%@",error.localizedDescription);
+        [self.tableView.mj_footer endRefreshing];
+        self.tableView.userInteractionEnabled = YES;
+    }];
+    
 }
 - (void)initNavBar{
     self.navView = [[NavView alloc] initWithFrame:CGRectMake(0, 0, UISCREEN_WIDTH, 64)];

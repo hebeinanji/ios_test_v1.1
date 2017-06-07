@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface ADModel : NSObject
-@property(copy, nonatomic)NSString * shopId;
-@property(copy, nonatomic)NSString * url;
+@property(copy, nonatomic)NSString * storeID;
+@property(copy, nonatomic)NSString * picURL;
 @end

@@ -17,31 +17,33 @@
     self.adModel = adModel;
     return self;
 }
--(instancetype)initWithFoodsModel:(FoodsModel *)foodsModel{
+
+-(instancetype)initWithRecommendModel:(RecommendModel *)recommendModel{
     self = [super init];
     if (!self) return nil;
-    self.foodsModel = foodsModel;
+    self.recommendModel = recommendModel;
     return self;
 }
-
 /** 从网络中加载启动页数据 */
 
 - (void)loadDataArrFromNetwork{
     _requestCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
             
-            [JZRequestTool GET:@"https://www.bilibili.com/index/rank/all-3-0.json" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSString * url = @"http://47.94.19.44:8080/dftsms-web/data/indexOfAndroid?pagestamp=0&areacountyCode=130401&numOfShow=10&rule=6&x=&y=";
+            [JZRequestTool GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                if([responseObject[@"pageItems"] count] == 10){
+                    return;
+                }
                 // 广告
-                NSArray *adModelArray = [NSArray modelArrayWithClass:[ADModel class] json:responseObject[@"pageItems"][0][@"list"]];
+                NSArray *adModelArray = [NSArray modelArrayWithClass:[ADModel class] json:responseObject[@"pageItems"][@"a_lbt"][@"lbt"]];
                 
                 // 爆款推荐
-                NSArray *recommendModelArray = [NSArray modelArrayWithClass:[FoodsModel class] json:responseObject[@"pageItems"][2][@"list"]];
+                NSArray *recommendModelArray = [NSArray modelArrayWithClass:[RecommendModel class] json:responseObject[@"pageItems"][@"b_bktj"][@"bktj"]];
                 
                 // 商家推荐
-                NSArray *merchantsModelArray = [NSArray modelArrayWithClass:[FoodsModel class] json:responseObject[@"pageItems"][3][@"list"]];
+                NSArray *merchantsModelArray = [NSArray modelArrayWithClass:[RecommendModel class] json:responseObject[@"pageItems"][@"c_tjsj"][@"tjsj"]];
                 
-                // 商家
-                NSArray *FoodsModelArray = [NSArray modelArrayWithClass:[FoodsModel class] json:responseObject[@"pageItems"][4][@"list"]];
                 
                 if (!adModelArray) {
                     adModelArray = [NSArray array];
@@ -52,10 +54,8 @@
                 if (!merchantsModelArray) {
                     merchantsModelArray = [NSArray array];
                 }
-                if (!FoodsModelArray) {
-                    FoodsModelArray = [NSArray array];
-                }
-                [subscriber sendNext:@[adModelArray,recommendModelArray,merchantsModelArray,FoodsModelArray]];
+                
+                [subscriber sendNext:@[adModelArray,recommendModelArray,merchantsModelArray]];
                 
                 [subscriber sendCompleted];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -68,4 +68,5 @@
         return signal;
     }];
 }
+
 @end

@@ -8,6 +8,7 @@
 
 #import "RecommendTableViewCell.h"
 #import "Screen.h"
+#import "UIImageView+AFNetworking.h"
 @interface RecommendTableViewCell()
 /**
  图1
@@ -75,65 +76,65 @@
     rightLine.backgroundColor = [UIColor blackColor];
     // 图1
     self.dishesOneImageView = [[UIImageView alloc] init];
-    self.dishesOneImageView.backgroundColor = [UIColor redColor];
+//    self.dishesOneImageView.backgroundColor = [UIColor redColor];
     self.dishesOneName = [[UILabel alloc] init];
-    self.dishesOneName.text = @"古法黄焖鸡";
+//    self.dishesOneName.text = @"古法黄焖鸡";
     self.dishesOneName.font = [UIFont systemFontOfSize:12.0f];
     
     self.dishesOneDescribe = [[UILabel alloc] init];
-    self.dishesOneDescribe.text = @"排骨";
-    self.dishesOneDescribe.textAlignment = NSTextAlignmentCenter;
-    self.dishesOneDescribe.font = [UIFont systemFontOfSize:11.0f];
-    self.dishesOneDescribe.layer.borderWidth = 1;
-    self.dishesOneDescribe.layer.borderColor = [UIColor blackColor].CGColor;
+//    self.dishesOneDescribe.text = @"排骨";
+//    self.dishesOneDescribe.textAlignment = NSTextAlignmentCenter;
+//    self.dishesOneDescribe.font = [UIFont systemFontOfSize:11.0f];
+//    self.dishesOneDescribe.layer.borderWidth = 1;
+//    self.dishesOneDescribe.layer.borderColor = [UIColor blackColor].CGColor;
     // 图2
     self.dishesTwoImageView = [[UIImageView alloc] init];
-    self.dishesTwoImageView.backgroundColor = [UIColor redColor];
+//    self.dishesTwoImageView.backgroundColor = [UIColor redColor];
     self.dishesTwoName = [[UILabel alloc] init];
-    self.dishesTwoName.text = @"老王推荐";
+//    self.dishesTwoName.text = @"老王推荐";
     self.dishesTwoName.font = [UIFont systemFontOfSize:12.0f];
     self.dishesTwoDescribe = [[UILabel alloc] init];
-    self.dishesTwoDescribe.text = @"排骨";
-    self.dishesTwoDescribe.textAlignment = NSTextAlignmentCenter;
-    self.dishesTwoDescribe.font = [UIFont systemFontOfSize:11.0f];
-    self.dishesTwoDescribe.layer.borderWidth = 1;
-    self.dishesTwoDescribe.layer.borderColor = [UIColor blackColor].CGColor;
+//    self.dishesTwoDescribe.text = @"排骨";
+//    self.dishesTwoDescribe.textAlignment = NSTextAlignmentCenter;
+//    self.dishesTwoDescribe.font = [UIFont systemFontOfSize:11.0f];
+//    self.dishesTwoDescribe.layer.borderWidth = 1;
+//    self.dishesTwoDescribe.layer.borderColor = [UIColor blackColor].CGColor;
     // 图3
     self.dishesThreeImageView = [[UIImageView alloc] init];
-    self.dishesThreeImageView.backgroundColor = [UIColor redColor];
+//    self.dishesThreeImageView.backgroundColor = [UIColor redColor];
     self.dishesThreeName = [[UILabel alloc] init];
-    self.dishesThreeName.text = @"田老师红烧肉";
+//    self.dishesThreeName.text = @"田老师红烧肉";
     self.dishesThreeName.font = [UIFont systemFontOfSize:12.0f];
     self.dishesThreeDescribe = [[UILabel alloc] init];
-    self.dishesThreeDescribe.text = @"排骨";
-    self.dishesThreeDescribe.textAlignment = NSTextAlignmentCenter;
-    self.dishesThreeDescribe.font = [UIFont systemFontOfSize:11.0f];
-    self.dishesThreeDescribe.layer.borderWidth = 1;
-    self.dishesThreeDescribe.layer.borderColor = [UIColor blackColor].CGColor;
+//    self.dishesThreeDescribe.text = @"排骨";
+//    self.dishesThreeDescribe.textAlignment = NSTextAlignmentCenter;
+//    self.dishesThreeDescribe.font = [UIFont systemFontOfSize:11.0f];
+//    self.dishesThreeDescribe.layer.borderWidth = 1;
+//    self.dishesThreeDescribe.layer.borderColor = [UIColor blackColor].CGColor;
     // 图4
     self.dishesFourImageView = [[UIImageView alloc] init];
-    self.dishesFourImageView.backgroundColor = [UIColor redColor];
+//    self.dishesFourImageView.backgroundColor = [UIColor redColor];
     self.dishesFourName = [[UILabel alloc] init];
-    self.dishesFourName.text = @"东方饺子王";
+//    self.dishesFourName.text = @"东方饺子王";
     self.dishesFourName.font = [UIFont systemFontOfSize:12.0f];
     self.dishesFourDescribe = [[UILabel alloc] init];
-    self.dishesFourDescribe.text = @"排骨";
-    self.dishesFourDescribe.textAlignment = NSTextAlignmentCenter;
-    self.dishesFourDescribe.font = [UIFont systemFontOfSize:11.0f];
-    self.dishesFourDescribe.layer.borderWidth = 1;
-    self.dishesFourDescribe.layer.borderColor = [UIColor blackColor].CGColor;
+//    self.dishesFourDescribe.text = @"排骨";
+//    self.dishesFourDescribe.textAlignment = NSTextAlignmentCenter;
+//    self.dishesFourDescribe.font = [UIFont systemFontOfSize:11.0f];
+//    self.dishesFourDescribe.layer.borderWidth = 1;
+//    self.dishesFourDescribe.layer.borderColor = [UIColor blackColor].CGColor;
     // 图5
     self.dishesFiveImageView = [[UIImageView alloc] init];
-    self.dishesFiveImageView.backgroundColor = [UIColor redColor];
+//    self.dishesFiveImageView.backgroundColor = [UIColor redColor];
     self.dishesFiveName = [[UILabel alloc] init];
-    self.dishesFiveName.text = @"张姐烤肉拌饭";
+//    self.dishesFiveName.text = @"张姐烤肉拌饭";
     self.dishesFiveName.font = [UIFont systemFontOfSize:12.0f];
     self.dishesFiveDescribe = [[UILabel alloc] init];
-    self.dishesFiveDescribe.text = @"排骨";
-    self.dishesFiveDescribe.textAlignment = NSTextAlignmentCenter;
-    self.dishesFiveDescribe.font = [UIFont systemFontOfSize:11.0f];
-    self.dishesFiveDescribe.layer.borderWidth = 1;
-    self.dishesFiveDescribe.layer.borderColor = [UIColor blackColor].CGColor;
+//    self.dishesFiveDescribe.text = @"排骨";
+//    self.dishesFiveDescribe.textAlignment = NSTextAlignmentCenter;
+//    self.dishesFiveDescribe.font = [UIFont systemFontOfSize:11.0f];
+//    self.dishesFiveDescribe.layer.borderWidth = 1;
+//    self.dishesFiveDescribe.layer.borderColor = [UIColor blackColor].CGColor;
     
     [self.contentView sd_addSubviews:@[leftLine,label,rightLine,self.dishesOneImageView,self.dishesTwoImageView,self.dishesThreeImageView,self.dishesFourImageView,self.dishesFiveImageView]];
     
@@ -285,39 +286,44 @@
 }
 -(void)setRecommendArr:(NSArray *)recommendArr{
 //    self.dishesOneImageView
-    self.dishesOneName.text = [recommendArr[0] shopTitle];
-    CGSize tagSize1 = [[recommendArr[0] sort] sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11.0f]}];
-    self.dishesOneDescribe.sd_layout
-    .widthIs(tagSize1.width+INDEX);
-    self.dishesOneDescribe.text = [recommendArr[0] sort];
+    self.dishesOneName.text = [recommendArr[0] storeName];
+    [self.dishesOneImageView setImageWithURL:[NSURL URLWithString:[recommendArr[0] picURL]] placeholderImage:nil];
+//    CGSize tagSize1 = [[recommendArr[0] sort] sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11.0f]}];
+//    self.dishesOneDescribe.sd_layout
+//    .widthIs(tagSize1.width+INDEX);
+//    self.dishesOneDescribe.text = [recommendArr[0] sort];
     
     //    self.dishesTwoImageView
-    self.dishesTwoName.text = [recommendArr[1] shopTitle];
-    CGSize tagSize2 = [[recommendArr[1] sort] sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11.0f]}];
-    self.dishesOneDescribe.sd_layout
-    .widthIs(tagSize2.width+INDEX);
-    self.dishesTwoDescribe.text = [recommendArr[1] sort];
+    self.dishesTwoName.text = [recommendArr[1] storeName];
+    [self.dishesTwoImageView setImageWithURL:[NSURL URLWithString:[recommendArr[1] picURL]] placeholderImage:nil];
+//    CGSize tagSize2 = [[recommendArr[1] sort] sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11.0f]}];
+//    self.dishesOneDescribe.sd_layout
+//    .widthIs(tagSize2.width+INDEX);
+//    self.dishesTwoDescribe.text = [recommendArr[1] sort];
     
     //    self.dishesThreeImageView
-    self.dishesThreeName.text = [recommendArr[2] shopTitle];
-    CGSize tagSize3 = [[recommendArr[2] sort] sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11.0f]}];
-    self.dishesOneDescribe.sd_layout
-    .widthIs(tagSize3.width+INDEX);
-    self.dishesThreeDescribe.text = [recommendArr[2] sort];
+    self.dishesThreeName.text = [recommendArr[2] storeName];
+    [self.dishesThreeImageView setImageWithURL:[NSURL URLWithString:[recommendArr[2] picURL]] placeholderImage:nil];
+//    CGSize tagSize3 = [[recommendArr[2] sort] sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11.0f]}];
+//    self.dishesOneDescribe.sd_layout
+//    .widthIs(tagSize3.width+INDEX);
+//    self.dishesThreeDescribe.text = [recommendArr[2] sort];
     
     //    self.dishesFourImageView
-    self.dishesFourName.text = [recommendArr[3] shopTitle];
-    CGSize tagSize4 = [[recommendArr[3] sort] sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11.0f]}];
-    self.dishesOneDescribe.sd_layout
-    .widthIs(tagSize4.width+INDEX);
-    self.dishesFourDescribe.text = [recommendArr[3] sort];
+    self.dishesFourName.text = [recommendArr[3] storeName];
+    [self.dishesFourImageView setImageWithURL:[NSURL URLWithString:[recommendArr[3] picURL]] placeholderImage:nil];
+//    CGSize tagSize4 = [[recommendArr[3] sort] sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11.0f]}];
+//    self.dishesOneDescribe.sd_layout
+//    .widthIs(tagSize4.width+INDEX);
+//    self.dishesFourDescribe.text = [recommendArr[3] sort];
     
     //    self.dishesFiveImageView
-    self.dishesFiveName.text = [recommendArr[4] shopTitle];
-    CGSize tagSize5 = [[recommendArr[4] sort] sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11.0f]}];
-    self.dishesOneDescribe.sd_layout
-    .widthIs(tagSize5.width+INDEX);
-    self.dishesFiveDescribe.text = [recommendArr[4] sort];
+    self.dishesFiveName.text = [recommendArr[4] storeName];
+    [self.dishesFiveImageView setImageWithURL:[NSURL URLWithString:[recommendArr[4] picURL]] placeholderImage:nil];
+//    CGSize tagSize5 = [[recommendArr[4] sort] sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11.0f]}];
+//    self.dishesOneDescribe.sd_layout
+//    .widthIs(tagSize5.width+INDEX);
+//    self.dishesFiveDescribe.text = [recommendArr[4] sort];
     
     
     

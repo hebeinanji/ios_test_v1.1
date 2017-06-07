@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FoodsModel.h"
+#import "RecommendModel.h"
 @interface RecommendTableViewCell : UITableViewCell
 @property(strong, nonatomic)NSArray * recommendArr;
 - (void)addItemTarget:(id)target action:(SEL)action;
